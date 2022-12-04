@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<title>
+
+</title>
+<body>
+    <script>
+    var addBinary = function(a, b) {
+    
+        var res = [];
+        //是否進位
+        var addOne = 0;
+        
+        //字串對齊
+        while(a.length < b.length){
+            a = "0" + a;
+        }
+        
+        while(b.length < a.length){
+            b = "0" + b;
+        }
+        //從低位到高位，依次相加
+        for(var i=a.length-1;i>=0;i--){
+            var curA = +a.charAt(i);
+            var curB = +b.charAt(i);
+            var sum = curA + curB + addOne;
+            //逢2進位
+            if(sum >= 2){
+                res[i] = sum - 2;
+                addOne = 1;
+            }
+            else{
+                res[i] = sum;
+                addOne = 0;
+            }
+        }
+        
+        if(addOne > 0){
+            res.unshift(1);
+        }
+        //一次性拼接
+        return res.join("");
+    };
+document.write(res);
+
+
+</script>
+</body>
+
+</html>
